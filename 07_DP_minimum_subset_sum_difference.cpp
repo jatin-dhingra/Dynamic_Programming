@@ -17,15 +17,13 @@ int minimumsubset(vector<int>v,int sum,int n)
       }
     }
   }
-
-  vector<int>candidates;
-  for(int i{1};i<n+1;i++)
+  for(int i=1;i<n+1;i++)
   {
-    for(int j{1};j<sum+1;j++)
+    for(int j=1;j<sum+1;j++)
     {
       if(v[i-1]<=j)
       {
-        dp[i][j]=dp[i-1][j]||dp[i-1][j-v[i-1]];
+        dp[i][j]=dp[i-1][j]|| dp[i-1][j-v[i-1]];
       }
       else
       {
@@ -33,24 +31,26 @@ int minimumsubset(vector<int>v,int sum,int n)
       }
     }
   }
+  vector<int>eligible;
   for(int i{};i<sum/2;i++)
   {
-    if(dp[3][i]==1)
-    {
-      candidates.push_back(i);
+    if(dp[n][i]==1){
+      eligible.push_back(i);
     }
   }
-
-  int minimum=INT_MAX;
-  for(int i{};i<candidates.size();i++){
-    minimum=min(minimum,sum-(2*candidates[i]));
+  int minn=INT_MAX;
+  for(int i{};i<eligible.size();i++)
+  {
+    minn=min(minn,sum-2*eligible[i]);
   }
-  return minimum;
+  return minn;
+
+
 }
 
 int main()
 {
-  vector<int>v{1,2,7};
+  vector<int>v{1,2,8};
   int sum=accumulate(v.begin(),v.end(),0);
   int n=v.size();
   cout<<minimumsubset(v,sum,n);
