@@ -12,9 +12,9 @@ int rodcutting(vector<int>lengthh,vector<int>price,int len)
   }
   for(int i{1};i<n+1;i++)
   {
-    for(int j=1;j<len+1;j++)
-    {
-      if(lengthh[i-1]<=j){
+    for(int j{1};j<len+1;j++){
+      if(lengthh[i-1]<=j)
+      {
         dp[i][j]=max(price[i-1]+dp[i][j-lengthh[i-1]],dp[i-1][j]);
       }
       else
