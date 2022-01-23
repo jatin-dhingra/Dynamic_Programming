@@ -2,13 +2,14 @@
 using namespace std;
 bool isplaindrome(string s,int i,int j)
 {
-  int len=j-i+1;
-  for(int k=i;k<len/2;k++)
+  while(i<j)
   {
-    if(s[k]!=s[len-i-1])
+    if(s[i]!=s[j])
     {
       return false;
     }
+    i++;
+    j--;
   }
   return true;
 
